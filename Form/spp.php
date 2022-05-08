@@ -50,7 +50,7 @@
                     </ul>
                 </div>
                 <div class="textjudul">
-                    <h1>Siswa</h1>
+                    <h1>SPP</h1>
                     <p>Please enter your current password to change your password.</p>
                 </div>
                 <div class="form">
