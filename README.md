@@ -8,5 +8,5 @@ Projek ini merupakan tugas _teamwork_ sekolah. Dimana di tim ini terdapat 6 angg
 2. I Kadek Darmayasa Adi Putra ~ github : [kadekdarmayasa](https://github.com/kadekdarmayasa)
 3. I Kadek Mahesa Parwata Gandhi ~ github : [youngPabloo](https://github.com/youngPabloo)
 4. I Made Arya Resta Giyanendra Suastra
-5. I Putu Gangga Swadiaya
+5. I Putu Gangga Swadiaya ~ github : [ganggaswadiaya](https://github.com/ganggaswadiaya)
 6. I Wayan Krisna Yasa
