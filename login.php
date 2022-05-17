@@ -2,6 +2,16 @@
 require 'connection.php';
 require 'google-api/vendor/autoload.php';
 
+if(isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
+    $id = $_COOKIE['id'];
+    $key = $_COOKIE['key'];
+    $user = mysqli_fetch_assoc(mysqli_query($connection, "SELECT * FROM users WHERE id_user=$id"));
+    $email = $user['email'];
+    if($key === hash('whirlpool', $email)) {
+        $_SESSION['id'] = $id;
+    } 
+}
+
 if(isset($_SESSION['id'])){
     header('Location: index.php');
     exit;
@@ -18,9 +28,12 @@ if(isset($_POST['login'])) {
         $passwordDB = $user['password'];
         $id = $user['id_user'];
         if(password_verify($password, $passwordDB)) {
-            $_SESSION['id'] = $id; 
+            $_SESSION['id'] = $id;
+            if(isset($_POST['remember-me'])) {
+                setcookie('id', $id, time() + 7 * 24 * 60 * 60);
+                setcookie('key', hash('whirlpool', $email), time() + 7 * 24 * 60 * 60);
+            }
             header('Location: index.php');
-            exit;
         } else {
             $errPass = true;
         }
@@ -144,7 +157,7 @@ if(isset($_GET['code'])) {
                     </div>
                     <div class="remember">
                         <div class="me">
-                            <input type="checkbox" name="remember">&nbsp;
+                            <input type="checkbox" name="remember-me">&nbsp;
                             <p>Remember Me</p>
                         </div>
                         <div class="link">
