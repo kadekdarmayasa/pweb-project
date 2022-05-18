@@ -14,9 +14,6 @@ small {
 	width: 100%;
 }
 
-input {
-	cursor: pointer;
-}
 section#loginpage {
 	width: 100%;
 	display: flex;
@@ -112,6 +109,11 @@ div.link {
 	justify-content: flex-start;
 	align-items: center;
 	font-size: 100%;
+	cursor: pointer;
+}
+
+.me input {
+	cursor: pointer;
 }
 
 div.link {
@@ -141,6 +143,7 @@ div.login a {
 	margin: 10px auto;
 	text-align: center;
 	transition: 0.3s linear;
+	cursor: pointer;
 }
 
 div.login a:hover {
@@ -163,6 +166,10 @@ div.login input:first-child {
 	background-color: #45be8b;
 	color: #f4f2f6;
 	font-size: 100%;
+}
+
+div.login input:first-child:hover {
+	background-color: #58cc9c;
 }
 
 footer {
