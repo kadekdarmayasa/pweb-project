@@ -11,6 +11,5 @@
   $user = mysqli_fetch_assoc($query);
 ?>
 
-<h1>Hello <?= $user['username']; ?></h1>
-
-<a href="logout.php">log out</a>
+<h1 style="font-family: Quicksand; font-weight: 500;">Halo, <?= $user['username']; ?> 👋🏻👋🏻</h1>
+<a href="logout.php" style="font-family: Quicksand; font-weight: 500; text-decoration: none;">log out</a>

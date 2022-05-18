@@ -1,3 +1,34 @@
+<?php  
+    require 'connection.php';
+
+    if(isset($_POST['register'])) {
+        $name = htmlspecialchars($_POST['name']);
+        $username = htmlspecialchars($_POST['username']);
+        $email = htmlspecialchars($_POST['email']);
+        $password = htmlspecialchars($_POST['password']);
+
+        if(count(explode('-', $username)) > 1 || count(explode(' ', $username)) > 1) {
+            echo "<script>
+                alert('invalid username');
+            </script>";
+        }
+
+        $query = mysqli_query($connection, "SELECT * FROM users");
+        $users = [];
+        while($row = mysqli_fetch_assoc($query)) {
+            $users[] = $row;
+        }
+
+        for($i = 0; $i < count($users); $i++) {
+            if($users[$i]['username'] == $username) {
+                echo "Ada";
+            }
+        }
+
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +36,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Registration</title>
    
     <script src="https://kit.fontawesome.com/c7301203e1.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +44,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="src/css/login-signup.css">
+    <link rel="stylesheet" href="src/css/signup.css?v=<?php echo time();?>">
 </head>
 
 <body>
@@ -37,7 +68,7 @@
                         <input type="password" placeholder="Password" name="password" required>
                     </div>
                     <div class="login">
-                        <input type="submit" value="Register">
+                        <input type="submit" value="Register" name="register">
                     </div>
                 </form>
             </div>

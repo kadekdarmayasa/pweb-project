@@ -1,0 +1,204 @@
+* {
+	font-family: 'Poppins', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+small {
+	color: rgb(255, 93, 93);
+	font-weight: 600;
+	width: 100%;
+}
+
+input {
+	cursor: pointer;
+}
+section#loginpage {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+div.tab-kiri {
+	width: 100%;
+	display: flex;
+}
+
+div.tab-kanan {
+	width: 100%;
+	height: 100vh;
+	padding: 130px 0;
+	box-sizing: border-box;
+}
+
+div.topsec,
+div.formsect {
+	max-width: 100%;
+	display: flex;
+	margin: auto;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+}
+
+div.iconpage {
+	max-width: 80%;
+	display: flex;
+	justify-content: center;
+}
+
+div.icon {
+	max-width: 40%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+div.icon i {
+	text-align: center;
+	padding: 20px 25px;
+	color: #81d8b4;
+	box-sizing: border-box;
+	border-radius: 50%;
+	border: 1px solid #eff0f3;
+	background-color: #f9faff;
+}
+
+form {
+	width: 80%;
+	margin: 0 auto;
+}
+
+div.input {
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px 0;
+}
+
+div.input input {
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid #f4f2f6;
+	background-color: #f5f5ff;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	font-size: 100%;
+	margin: 10px auto;
+}
+
+input:focus {
+	outline: 3px solid #76ffc6;
+}
+
+div.remember {
+	max-width: 100%;
+	display: flex;
+	margin: 20px 0;
+	justify-content: space-between;
+}
+
+div.me,
+div.link {
+	width: 50%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	font-size: 100%;
+}
+
+div.link {
+	justify-content: flex-end;
+}
+
+div.link a {
+	color: #45be8b;
+}
+
+div.login {
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	margin: 20px 0;
+}
+
+div.login input,
+div.login a {
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid #f4f2f6;
+	background-color: #f3f5ff;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	font-size: 100%;
+	margin: 10px auto;
+	text-align: center;
+	transition: 0.3s linear;
+}
+
+div.login a:hover {
+	background-color: #eef1ff;
+}
+
+div.login a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgb(30, 30, 30);
+}
+
+div.login a img {
+	width: 20px;
+	margin-right: 10px;
+}
+
+div.login input:first-child {
+	background-color: #45be8b;
+	color: #f4f2f6;
+	font-size: 100%;
+}
+
+footer {
+	width: 80%;
+	margin: 0 auto;
+}
+
+div.footer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+div.footer a {
+	text-decoration: none;
+	color: #45be8b;
+}
+
+@media screen and (min-width: 870px) {
+	section#loginpage {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		height: 100vh;
+	}
+
+	div.tab-kiri {
+		width: 50%;
+		background-image: url('../img/fixkiri1.png');
+		background-size: cover;
+		background-position: -130px 0;
+	}
+
+	div.tab-kanan {
+		width: 50%;
+		height: 100vh;
+		padding: 150px 0;
+		box-sizing: border-box;
+	}
+}
