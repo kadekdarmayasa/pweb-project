@@ -88,10 +88,13 @@ if(isset($_GET['code'])) {
         }
         else{   
             // if user not exists we will insert the user
-            $insert = mysqli_query($connection, "INSERT INTO `users` (`id_user`, `role`, `email`, `username`, `password`) VALUES (NULL, '2', '$email', '$username', '')");
-
+            $insert = mysqli_query($connection, "INSERT INTO `users` (`id_user`, `role`, `nama`, `email`, `username`, `password`) VALUES (NULL, '2', '$name' , '$email', '$username', '')");
+            $get_user = mysqli_query($connection, "SELECT * FROM `users` WHERE `email`='$email'");
+            $result = mysqli_fetch_assoc($get_user);
+            $id = $result['id_user'];
+            
             if($insert){
-                $_SESSION['id'] = $id; 
+                $_SESSION['id'] = $id;
                 header('Location: index.php');
                 exit;
             }
