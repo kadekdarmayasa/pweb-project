@@ -38,7 +38,7 @@
   <div class="form">
     <h2>Enter your new password</h2>
     <form action="" method="post">
-      <input type="password" name="password" id="password" placeholder="new password" required>
+      <input type="password" name="password" id="password" placeholder="new password" autofocus required>
       <br>
       <br>
       <input type="password" name="repeat-pass" id="repeat-pass" placeholder="repeat password" required>

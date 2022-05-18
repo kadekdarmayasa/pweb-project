@@ -35,7 +35,7 @@
       <?php if(isset($email)) : ?>
         <input class="email"type="email" name="email" id="email" placeholder="email" value="<?= $email; ?>" required>
       <?php else : ?>
-        <input class="email"type="email" name="email" id="email" placeholder="email" required>
+        <input class="email"type="email" name="email" id="email" autofocus placeholder="email" required>
       <?php endif; ?>
         <button type="submit" name="submit">Send</button>
     </form>

@@ -93,6 +93,10 @@ div.input input {
 	margin: 10px auto;
 }
 
+input:focus {
+	outline: 3px solid #76ffc6;
+}
+
 div.remember {
 	max-width: 100%;
 	display: flex;

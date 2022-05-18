@@ -147,7 +147,7 @@ if(isset($_GET['code'])) {
                         <?php if(isset($_POST['login'])) : ?>
                             <input type="email" placeholder="email" name="email" value="<?= $email; ?>" required>
                         <?php else : ?>
-                            <input type="email" placeholder="email" name="email" required>
+                            <input type="email" placeholder="email" name="email" autofocus required>
                         <?php endif; ?>
                         <?php if(isset($unregisteredEmail)) : ?>
                             <small>your email is not registered yet</small>

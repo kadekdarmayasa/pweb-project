@@ -62,7 +62,7 @@
             <div class="formsect">
                 <form action="" method="POST">
                     <div class="input">
-                        <input type="text" placeholder="Name" name="name" required>
+                        <input type="text" placeholder="Name" name="name" autofocus required>
                         <input type="text" placeholder="Username" name="username" required>
                         <input type="email" placeholder="Email" name="email" required>
                         <input type="password" placeholder="Password" name="password" required>
