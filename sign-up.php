@@ -12,34 +12,29 @@
             echo "<script>
                 alert('invalid username');
             </script>";
-        }
+        } else {
+            $query = mysqli_query($connection, "SELECT * FROM users WHERE email = '$email' AND username = '$username'");
+            $result = mysqli_num_rows($query);
 
-        $query = mysqli_query($connection, "SELECT * FROM users");
-        $users = [];
-        while($row = mysqli_fetch_assoc($query)) {
-            $users[] = $row;
-        }
+            if($result < 1) {
+                $query = mysqli_query($connection, 
+                    "INSERT INTO users(`id_user`, `role`, `nama`, `email`, `username`, `password`) 
+                    VALUES (null, 2, '$name', '$email', '$username', '$password');
+                ");
 
-        for($item = 0; $item < count($users); $item++) {
-            if($users[$item]['username'] == $username || $users[$item]['email'] == $email) {
+                if($query) {
+                    echo "<script>
+                        alert('Your account have been created, you will redirect to login page');
+                        document.location.href = 'login.php';
+                    </script>";
+                }
+            } else {
                 echo "
-                    <script>
-                        alert('email or username are already exist!');
-                    </script>
-                ";
-            } 
-        }
-
-        $query = mysqli_query($connection, 
-            "INSERT INTO users(`id_user`, `role`, `nama`, `email`, `username`, `password`) 
-            VALUES (null, 2, '$name', '$email', '$username', '$password');
-        ");
-
-        if($query) {
-            echo "<script>
-                alert('Your account have been created, you will redirect to login page');
-                document.location.href = 'login.php';
-            </script>";
+                        <script>
+                            alert('email or username are already exist!');
+                        </script>
+                    ";
+            }
         }
     }
 ?>
