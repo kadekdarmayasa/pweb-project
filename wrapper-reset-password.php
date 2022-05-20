@@ -1,9 +1,9 @@
 <?php 
-  require 'connection.php';
+  require 'functions.php';
 
   if(isset($_POST['submit'])) {
     $email = $_POST['email'];
-    $emailInDB = mysqli_query($connection, "SELECT `email` from `users` WHERE `email` = '$email'");
+    $emailInDB = query($connection, "SELECT `email` from `users` WHERE `email` = '$email'");
     if(mysqli_num_rows($emailInDB) <= 0) {
       echo "<script>
         alert('Email is not registered yet!');
