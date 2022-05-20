@@ -1,0 +1,100 @@
+* {
+	padding: 0;
+	margin: 0;
+	font-family: 'Poppins', sans-serif;
+}
+body {
+	background-image: url(../img/fixkiri1.png);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	width: auto;
+}
+
+#wrapper {
+	width: 88%;
+	height: auto;
+	padding: 70px 0;
+	margin: 150px auto;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+	background-color: rgba(255, 255, 255, 0.7);
+	backdrop-filter: blur(5px);
+	border-radius: 20px;
+}
+
+h2 {
+	font-size: 28px;
+	font-weight: 500;
+}
+
+p {
+	font-size: 16px;
+	color: rgb(88, 88, 88);
+}
+form {
+	width: 80%;
+}
+
+input {
+	font-size: 16px;
+	border-radius: 10px;
+	height: 50px;
+	width: 100%;
+	padding: 0 14px;
+	box-sizing: border-box;
+	background-color: rgba(245, 245, 255, 0.8);
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border: 0;
+	outline: 0;
+	font-weight: 300;
+}
+
+input::placeholder {
+	color: grey;
+}
+
+input:focus {
+	outline: 3px solid rgba(87, 225, 167, 0.5);
+}
+
+button {
+	height: 45px;
+	width: 100%;
+	font-size: 16px;
+	border-radius: 5px;
+	color: white;
+	border: 0;
+	background-color: #45be8b;
+	transition: 0.3s linear;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #45ac81;
+}
+
+@media screen and (min-width: 678px) {
+	#wrapper {
+		max-width: 500px;
+	}
+
+	h2 {
+		font-size: 32px;
+	}
+}
+
+@media screen and (max-width: 460px) {
+	input {
+		height: 40px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	#wrapper {
+		margin: 50px auto;
+	}
+}
