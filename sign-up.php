@@ -1,45 +1,32 @@
 <?php  
-    require 'connection.php';
+    require 'functions.php';
 
     if(isset($_POST['register'])) {
+        $result = registration($_POST);
         $name = htmlspecialchars($_POST['name']);
         $username = htmlspecialchars($_POST['username']);
         $email = htmlspecialchars($_POST['email']);
-        $password = htmlspecialchars($_POST['password']);
-        $password = password_hash($password, PASSWORD_DEFAULT);
-
-        if(count(explode('-', $username)) > 1 || count(explode(' ', $username)) > 1) {
-            echo "<script>
-                alert('invalid username');
-            </script>";
-        }
-
-        $query = mysqli_query($connection, "SELECT * FROM users");
-        $users = [];
-        while($row = mysqli_fetch_assoc($query)) {
-            $users[] = $row;
-        }
-
-        for($item = 0; $item < count($users); $item++) {
-            if($users[$item]['username'] == $username || $users[$item]['email'] == $email) {
-                echo "
-                    <script>
-                        alert('email or username are already exist!');
-                    </script>
-                ";
-            } 
-        }
-
-        $query = mysqli_query($connection, 
-            "INSERT INTO users(`id_user`, `role`, `nama`, `email`, `username`, `password`) 
-            VALUES (null, 2, '$name', '$email', '$username', '$password');
-        ");
-
-        if($query) {
-            echo "<script>
-                alert('Your account have been created, you will redirect to login page');
-                document.location.href = 'login.php';
-            </script>";
+    
+        if($result === "invalid-username") {
+            echo "
+                <script>
+                    alert('Invalid username!!!');
+                </script>
+            ";
+        } else if ($result === "registration-success") {
+            echo "
+                <script>
+                    alert('Congratulations 🥳🥳, your account has been created!');
+                    alert('You will redirect to login page');
+                    document.location.href = 'login.php';
+                </script>
+            ";
+        } else {
+            echo "
+                <script>
+                    alert('Email is already registered');
+                </script>
+            ";
         }
     }
 ?>

@@ -6,16 +6,16 @@
 body {
 	background-image: url(../img/fixkiri1.png);
 	background-size: cover;
-	width: 100%;
-	height: 100%;
+	background-position: center;
+	background-attachment: fixed;
+	width: auto;
 }
 
 #wrapper {
-	max-width: 800px;
+	width: 88%;
 	height: auto;
-	background-color: red;
 	padding: 70px 0;
-	margin: 150px 400px;
+	margin: 150px auto;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
@@ -26,8 +26,8 @@ body {
 }
 
 h2 {
-	font-size: 30px;
-	font-weight: 600;
+	font-size: 28px;
+	font-weight: 500;
 }
 
 p {
@@ -35,31 +35,35 @@ p {
 	color: rgb(88, 88, 88);
 }
 form {
-	border-radius: 20px;
+	width: 80%;
 }
 
 input {
 	font-size: 16px;
-	border-radius: 5px;
+	border-radius: 10px;
 	height: 50px;
-	width: 400px;
+	width: 100%;
 	padding: 0 14px;
 	box-sizing: border-box;
-	background-color: #f5f5ff;
+	background-color: rgba(245, 245, 255, 0.8);
 	margin-top: 30px;
 	margin-bottom: 30px;
 	border: 0;
 	outline: 0;
+	font-weight: 300;
+}
+
+input::placeholder {
+	color: grey;
 }
 
 input:focus {
-	outline: 3px solid #57e1a7;
+	outline: 3px solid rgba(87, 225, 167, 0.5);
 }
 
 button {
-	width: 200px;
-	justify-self: flex-start;
-	height: 40px;
+	height: 45px;
+	width: 100%;
 	font-size: 16px;
 	border-radius: 5px;
 	color: white;
@@ -71,4 +75,26 @@ button {
 
 button:hover {
 	background-color: #45ac81;
+}
+
+@media screen and (min-width: 678px) {
+	#wrapper {
+		max-width: 500px;
+	}
+
+	h2 {
+		font-size: 32px;
+	}
+}
+
+@media screen and (max-width: 460px) {
+	input {
+		height: 40px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	#wrapper {
+		margin: 50px auto;
+	}
 }

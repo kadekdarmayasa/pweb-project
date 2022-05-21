@@ -1,28 +1,91 @@
-<?php
+<?php  
+  require 'connection.php';
 
-require 'google-api/vendor/autoload.php';
+  function query($conn, $query) {
+    $query = mysqli_query($conn, $query);
+    return $query;
+  }
 
-// Creating new google client instance
-$client = new Google_Client();
+  function getUser($conn, $query) {
+    $query = mysqli_query($conn, $query);
+    $result = mysqli_fetch_assoc($query);
+    return $result;
+  }
 
-// Enter your Client ID
-$client->setClientId('464426367916-5o4ps9jmu8fsgagbtg7ug3jrgatvp4ba.apps.googleusercontent.com');
-// Enter your Client Secrect
-$client->setClientSecret('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');
-// Enter the Redirect URL
-$client->setRedirectUri('http://localhost/google-login/login.php');
+  function reset_password($data, $id) {
+    global $connection;
+    $password = $data['password'];
+    $password2 = $data['repeat-pass']; 
 
-// Adding those scopes which we want to get (email & profile Information)
-$client->addScope("email");
-$client->addScope("profile");
+    if($password !== $password2) {
+      return 0;
+    } else {
+      $password = password_hash($password, PASSWORD_DEFAULT);
+      mysqli_query($connection, "UPDATE `users` SET password = '$password' WHERE id_user = $id");
+      return 1;
+    }
+  }
 
+  function registration($data) {
+    global $connection;  
+    $name = htmlspecialchars($data['name']);
+    $username = htmlspecialchars($data['username']);
+    $email = htmlspecialchars($data['email']);
+    $password = htmlspecialchars($data['password']);
+    $password = password_hash($password, PASSWORD_DEFAULT);
 
-if(isset($_GET['code'])):
+    if(count(explode('-', $username)) > 1 || count(explode(' ', $username)) > 1) {
+        return 'invalid-username';
+    } else {
+        $query = query($connection, "SELECT * FROM users WHERE email = '$email'");
+        $result = mysqli_num_rows($query);
 
-    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+        if($result < 1) {
+            $query = mysqli_query($connection, 
+                "INSERT INTO users(`id_user`, `role`, `nama`, `email`, `username`, `password`) 
+                VALUES (null, 2, '$name', '$email', '$username', '$password');
+            ");
 
-    if(!isset($token["error"])){
+            if($query) {
+                return "registration-success";
+            }
+        } else {
+            return "email-registered";
+        }
+    }
+  }
 
+  function login($data) {
+    global $connection;
+    $email = $data['email'];
+    $password = $data['password'];
+    $query = query($connection, "SELECT * FROM users WHERE email = '$email'");
+
+    if(mysqli_num_rows($query)) {
+        $user = mysqli_fetch_assoc($query);
+        $passwordDB = $user['password'];
+        $id = $user['id_user'];
+        if(password_verify($password, $passwordDB)) {
+            $_SESSION['id'] = $id;
+            if(isset($_POST['remember-me'])) {
+                setcookie('id', $id, time() + 7 * 24 * 60 * 60);
+                setcookie('key', hash('whirlpool', $email), time() + 7 * 24 * 60 * 60);
+            }
+            header('Location: index.php');
+            exit;
+        } else {
+            return 'password-error';        
+        }
+    } else {
+        return 'unregistered-email';
+    }
+  }
+
+  function googleLogin($code, $client) { 
+      global $connection;
+      $token = $client->fetchAccessTokenWithAuthCode($code);
+
+       if(!isset($token["error"])){    
         $client->setAccessToken($token['access_token']);
 
         // getting profile information
@@ -30,11 +93,10 @@ if(isset($_GET['code'])):
         $google_account_info = $google_oauth->userinfo->get();
     
         // Storing data into database
-        $id = mysqli_real_escape_string($db_connection, $google_account_info->id);
-        $full_name = mysqli_real_escape_string($db_connection, trim($google_account_info->name));
-        $email = mysqli_real_escape_string($db_connection, $google_account_info->email);
-        $profile_pic = mysqli_real_escape_string($db_connection, $google_account_info->picture);
-        $usernameExp = explode(' ', $full_name);
+        $name = mysqli_real_escape_string($connection, trim($google_account_info->name));
+        $email = mysqli_real_escape_string($connection, $google_account_info->email);
+        // $profile_pic = mysqli_real_escape_string($connection, $google_account_info->picture);
+        $usernameExp = explode(' ', $name);
         $username = '';
         foreach($usernameExp as $user) {
             $username .= $user;
@@ -42,22 +104,24 @@ if(isset($_GET['code'])):
         $username = strtolower($username);
 
         // checking user already exists or not
-        $get_user = mysqli_query($db_connection, "SELECT `google_id` FROM `users` WHERE `google_id`='$id'");
+        $get_user = query($connection, "SELECT * FROM `users` WHERE `email`='$email'");
+        $result = mysqli_fetch_assoc($get_user);
+        $id = $result['id_user'];
+    
         if(mysqli_num_rows($get_user) > 0){
-
-            $_SESSION['login_id'] = $id; 
-            header('Location: home.php');
+            $_SESSION['id'] = $id; 
+            header('Location: index.php');
             exit;
-
         }
-        else{
-
+        else{   
             // if user not exists we will insert the user
-            $insert = mysqli_query($db_connection, "INSERT INTO `users`(`google_id`,`name`,`email`,`profile_image`, `username`) VALUES('$id','$full_name','$email','$profile_pic', '$username')");
-
+            $insert = query($connection, "INSERT INTO `users` (`id_user`, `role`, `nama`, `email`, `username`, `password`) VALUES (NULL, '2', '$name' , '$email', '$username', '')");
+            $get_user = getUser($connection, "SELECT * FROM `users` WHERE `email`='$email'");
+            $id = $get_user['id_user'];
+            
             if($insert){
-                $_SESSION['login_id'] = $id; 
-                header('Location: home.php');
+                $_SESSION['id'] = $id;
+                header('Location: index.php');
                 exit;
             }
             else{
@@ -65,17 +129,10 @@ if(isset($_GET['code'])):
             }
 
         }
-
     }
     else{
         header('Location: login.php');
         exit;
     }
-    
-else: 
-    // Google Login Url = $client->createAuthUrl(); 
+  }
 ?>
-
-    <!-- <a class="login-btn" href="<?php echo $client->createAuthUrl(); ?>">Login</a> -->
-
-<?php endif; ?>

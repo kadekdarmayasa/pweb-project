@@ -1,11 +1,11 @@
 <?php
-require 'connection.php';
+require 'functions.php';
 require 'google-api/vendor/autoload.php';
 
 if(isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     $id = $_COOKIE['id'];
     $key = $_COOKIE['key'];
-    $user = mysqli_fetch_assoc(mysqli_query($connection, "SELECT * FROM users WHERE id_user=$id"));
+    $user = getUser($connection,  "SELECT * FROM users WHERE id_user=$id");
     $email = $user['email'];
     if($key === hash('whirlpool', $email)) {
         $_SESSION['id'] = $id;
@@ -19,26 +19,11 @@ if(isset($_SESSION['id'])){
 
 // If the user click login button 
 if(isset($_POST['login'])) {
+    $result = login($_POST);
     $email = $_POST['email'];
-    $password = $_POST['password'];
-    $query = mysqli_query($connection, "SELECT * FROM users WHERE email = '$email'");
-
-    if(mysqli_num_rows($query)) {
-        $user = mysqli_fetch_assoc($query);
-        $passwordDB = $user['password'];
-        $id = $user['id_user'];
-        if(password_verify($password, $passwordDB)) {
-            $_SESSION['id'] = $id;
-            if(isset($_POST['remember-me'])) {
-                setcookie('id', $id, time() + 7 * 24 * 60 * 60);
-                setcookie('key', hash('whirlpool', $email), time() + 7 * 24 * 60 * 60);
-            }
-            header('Location: index.php');
-            exit;
-        } else {
-            $errPass = true;
-        }
-    } else {
+    if($result == "password-error") {
+        $errPass = true;
+    } else if ($result == "unregistered-email") {
         $unregisteredEmail = true;
     }
 } 
@@ -54,62 +39,9 @@ $client->setRedirectUri('http://localhost/pendaftaran-siswa/login.php');
 $client->addScope("email");
 $client->addScope("profile");
 
-
+// Google Login
 if(isset($_GET['code'])) {
-    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-
-    if(!isset($token["error"])){    
-
-        $client->setAccessToken($token['access_token']);
-
-        // getting profile information
-        $google_oauth = new Google_Service_Oauth2($client);
-        $google_account_info = $google_oauth->userinfo->get();
-    
-        // Storing data into database
-        $name = mysqli_real_escape_string($connection, trim($google_account_info->name));
-        $email = mysqli_real_escape_string($connection, $google_account_info->email);
-        $profile_pic = mysqli_real_escape_string($connection, $google_account_info->picture);
-        $usernameExp = explode(' ', $name);
-        $username = '';
-        foreach($usernameExp as $user) {
-            $username .= $user;
-        }
-        $username = strtolower($username);
-
-        // checking user already exists or not
-        $get_user = mysqli_query($connection, "SELECT * FROM `users` WHERE `email`='$email'");
-        $result = mysqli_fetch_assoc($get_user);
-        $id = $result['id_user'];
-    
-        if(mysqli_num_rows($get_user) > 0){
-            $_SESSION['id'] = $id; 
-            header('Location: index.php');
-            exit;
-        }
-        else{   
-            // if user not exists we will insert the user
-            $insert = mysqli_query($connection, "INSERT INTO `users` (`id_user`, `role`, `nama`, `email`, `username`, `password`) VALUES (NULL, '2', '$name' , '$email', '$username', '')");
-            $get_user = mysqli_query($connection, "SELECT * FROM `users` WHERE `email`='$email'");
-            $result = mysqli_fetch_assoc($get_user);
-            $id = $result['id_user'];
-            
-            if($insert){
-                $_SESSION['id'] = $id;
-                header('Location: index.php');
-                exit;
-            }
-            else{
-                echo "Sign up failed!(Something went wrong).";
-            }
-
-        }
-
-    }
-    else{
-        header('Location: login.php');
-        exit;
-    }
+    googleLogin($_GET['code'], $client);
 }
 ?>
 <!DOCTYPE html>
@@ -156,7 +88,7 @@ if(isset($_GET['code'])) {
 
                         <input type="password" placeholder="password" name="password" required>
                         <?php if(isset($errPass)) : ?>
-                            <small>your password is wrong</small>
+                            <small>wrong password</small>
                         <?php endif; ?>
                     </div>
                     <div class="remember">

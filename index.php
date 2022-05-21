@@ -1,5 +1,5 @@
 <?php 
-  require 'connection.php';
+  require 'functions.php';
   $id = $_SESSION['id'];
 
   if(!isset($id)) {
@@ -7,8 +7,7 @@
     exit;
   }
 
-  $query = mysqli_query($connection, "SELECT * FROM `users` WHERE id_user = $id");
-  $user = mysqli_fetch_assoc($query);
+  $user = getUser($connection, "SELECT * FROM `users` WHERE id_user = $id");
 ?>
 
 <h1 style="font-family: Quicksand; font-weight: 500;">Halo, <?= $user['username']; ?> 👋🏻👋🏻</h1>
