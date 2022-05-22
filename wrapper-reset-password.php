@@ -1,5 +1,5 @@
 <?php 
-  require 'functions.php';
+  require 'app/functions.php';
 
   if(isset($_POST['submit'])) {
     $email = $_POST['email'];

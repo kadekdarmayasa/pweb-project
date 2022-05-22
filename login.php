@@ -1,5 +1,5 @@
 <?php
-require 'functions.php';
+require 'app/functions.php';
 require 'google-api/vendor/autoload.php';
 
 if(isset($_COOKIE['id']) && isset($_COOKIE['key'])) {

@@ -1,5 +1,5 @@
 <?php  
-  require 'connection.php';
+  require 'app/connection.php';
   session_destroy();
   $_SESSION = [];
   setcookie('id', '');

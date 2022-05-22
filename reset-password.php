@@ -1,5 +1,5 @@
 <?php  
-  require 'functions.php';
+  require 'app/functions.php';
   if(!isset($_GET['email'])) {
     header("Location: wrapper-reset-password.php");
     exit;
