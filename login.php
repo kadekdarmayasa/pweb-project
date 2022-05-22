@@ -13,8 +13,19 @@ if(isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 }
 
 if(isset($_SESSION['id'])){
-    header('Location: index.php');
-    exit;
+    $id = $_SESSION['id'];
+    $query = query($connection, "SELECT `role` FROM `users` WHERE `user_id`= $id");
+    $result = mysqli_fetch_assoc($query);
+    $role = $result['role'];
+
+
+    if($role > 1) {
+        header('Location: Dashboard/admin.php');
+        exit;
+    } else {
+        header('Location: Dashboard/siswa.php');
+        exit;
+    }
 }
 
 // If the user click login button 

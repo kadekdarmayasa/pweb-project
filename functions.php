@@ -65,14 +65,20 @@
         $user = mysqli_fetch_assoc($query);
         $passwordDB = $user['password'];
         $id = $user['id_user'];
+        $role = $user['role'];
         if(password_verify($password, $passwordDB)) {
             $_SESSION['id'] = $id;
             if(isset($_POST['remember-me'])) {
                 setcookie('id', $id, time() + 7 * 24 * 60 * 60);
                 setcookie('key', hash('whirlpool', $email), time() + 7 * 24 * 60 * 60);
             }
-            header('Location: index.php');
-            exit;
+            if($role > 1) {
+                header('Location: Dashboard/siswa.php');
+                exit;
+            } else {
+                header('Location: Dashboard/admin.php');
+                exit;
+            }
         } else {
             return 'password-error';        
         }
@@ -110,7 +116,7 @@
     
         if(mysqli_num_rows($get_user) > 0){
             $_SESSION['id'] = $id; 
-            header('Location: index.php');
+            header('Location: Dashboard/admin.php');
             exit;
         }
         else{   
@@ -121,7 +127,7 @@
             
             if($insert){
                 $_SESSION['id'] = $id;
-                header('Location: index.php');
+                header('Location: Dashboard/admin.php');
                 exit;
             }
             else{

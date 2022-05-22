@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemrograman Web</title>
-    <link rel="stylesheet" href="Siswa.css">
+    <title>Dashboard - Siswa</title>
+    <link rel="stylesheet" href="../src/css/siswa.css">
 
     <script src="https://kit.fontawesome.com/c7301203e1.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,8 +25,8 @@
                 <h1>P R O J E C T</h1>
             </div>
             <div class="dash1-column">
-                <div class="isi-dash1">
-                    <i class="fa-regular fa-message fa-2x"></i>
+                <div class="isi-dash1 active">
+                    <i class="fa-solid fa-user-check fa-2x"></i>
                     <h1><a href="siswa.php">Siswa</a></h1>
                 </div>
                 <div class="isi-dash1">
@@ -34,7 +34,7 @@
                     <h1><a href="administrasi.php">Administrasi</a></h1>
                 </div>
                 <div class="isi-dash1">
-                    <i class="fa-regular fa-user fa-2x"></i>
+                    <i class="fa-solid fa-file-invoice-dollar fa-2x"></i>
                     <h1><a href="rekening.php">Rekening</a></h1>
                 </div>
                 <div class="isi-dash1">
@@ -46,12 +46,16 @@
                     <h1><a href="admin.php">Admin</a></h1>
                 </div>
             </div>
+            <div class="log-out">
+                <i class="fa-solid fa-right-from-bracket fa-2x"></i>
+                <h1><a href="../logout.php">Log Out</a></h1>
+            </div>
         </div>
     </div>
     <div class="dash-2">
         <div class="menubar-dash2">
             <div class="menubar-left">
-                <h1>Dashboard > Orders</h1>
+                <h1>Dashboard > Siswa</h1>
             </div>
             <div class="menubar-right">
                 <i class="fa-regular fa-bell fa-2x"></i>
@@ -63,7 +67,7 @@
         <div class="isibar">
             <div class="isibar-title">
                 <div class="isibart-left">
-                    <h1>Orders</h1>
+                    <h1>Siswa</h1>
                 </div>
                 <div class="isibart-right">
                     <button>CREATE NEW</button>
