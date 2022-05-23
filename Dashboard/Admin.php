@@ -1,3 +1,13 @@
+<?php  
+    require '../app/functions.php';
+    if(isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $query = query($connection, "SELECT * FROM `users` WHERE `id_user`=$id");
+        $result = mysqli_fetch_assoc($query);
+        $username = $result['username'];
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +41,7 @@
                 </div>
                 <div class="isi-dash1">
                     <i class="fa-regular fa-address-book fa-2x"></i>
-                    <h1><a href="administrasi.php">Administrasi</a></h1>
+                    <h1><a href="administrasi.php?username=<?= $username ?>">Administrasi</a></h1>
                 </div>
                 <div class="isi-dash1">
                     <i class="fa-solid fa-file-invoice-dollar fa-2x"></i>
@@ -60,7 +70,7 @@
             <div class="menubar-right">
                 <i class="fa-regular fa-bell fa-2x"></i>
                 <div class="profile"></div>
-                <h1>Cocomelon</h1>
+                <h1><?= $username; ?></h1>
                 <i class="fa-solid fa-angle-down fa-2x"></i>
             </div>
         </div>

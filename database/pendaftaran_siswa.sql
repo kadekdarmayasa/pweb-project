@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 22, 2022 at 03:30 PM
+-- Generation Time: May 23, 2022 at 01:59 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -170,9 +170,7 @@ INSERT INTO `users` (`id_user`, `role`, `nama`, `email`, `username`, `password`)
 (3, 2, 'Made Arya Kurniawan', 'arya12@gmail.com', 'arya', '$2y$10$S2camgTcK0WsC4Ut3L4OsOK4f0De7MTzvS8CvEl7ZrpaxlMTpgpVa'),
 (4, 1, 'Muhammad Gandhi Abdullah', 'gandhi@gmail.com', 'gandhi', '$2y$10$gaJHeOu/oDDwap7J25yCieJrEIkYXm8KeRgWavMVpRY9Fr1.nJOQq'),
 (5, 1, 'I Made Adi Arnawa, S.M.', 'adiarnawa78@gmail.com', 'adiarnawa78', '$2y$10$NqMlPu1eDCZJkCq/MFRqi.Q1mhCp3Mfpbivk6LGjS6XvvjCbpaIou'),
-(6, 1, 'Siti Mulyani, M.', 'sitimulyani@gmail.com', 'sitimulyani', '$2y$10$NVb7MqCQHytkAhXUZo1ka.JaTwT1B4aReWO.9Mk0rRdEJ5pscxBDm'),
-(17, 2, 'I Komang Arta Wijaya', 'wijayakomang@gmail.com', 'artawijaya', '$2y$10$JXp/KIMJCART7esX8HyQoeIbvZv0pajgVU4QiuXO0Zr4Ox3q42Pni'),
-(31, 2, 'I Gede Rico Tastrawan ', 'gederico@gmail.com', 'ricotastrawan', '$2y$10$vHM/HnzyOrj23zXKJi9hIO43lOFl5p6rr4tYqnh3A/r6iv6OmcLAu');
+(6, 1, 'Siti Mulyani, M.', 'sitimulyani@gmail.com', 'sitimulyani', '$2y$10$NVb7MqCQHytkAhXUZo1ka.JaTwT1B4aReWO.9Mk0rRdEJ5pscxBDm');
 
 --
 -- Indexes for dumped tables

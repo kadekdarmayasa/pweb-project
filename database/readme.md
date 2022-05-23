@@ -24,12 +24,4 @@ role : admin / 1
 email : sitimulyani@gmail.com
 password : siti45
 role : admin / 1
-
-email : wijayakomang@gmail.com
-password : wijayakomang
-role : user biasa / 2
-
-email : gederico@gmail.com
-password : rico123
-role : user biasa / 2
 ```

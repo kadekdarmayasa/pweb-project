@@ -76,7 +76,7 @@
                 header('Location: Dashboard/siswa.php');
                 exit;
             } else {
-                header('Location: Dashboard/admin.php');
+                header('Location: Dashboard/admin.php?id=' . $id);
                 exit;
             }
         } else {

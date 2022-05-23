@@ -60,7 +60,7 @@
             <div class="menubar-right">
                 <i class="fa-regular fa-bell fa-2x"></i>
                 <div class="profile"></div>
-                <h1>Cocomelon</h1>
+                <h1><?= $_GET['username']; ?></h1>
                 <i class="fa-solid fa-angle-down fa-2x"></i>
             </div>
         </div>
