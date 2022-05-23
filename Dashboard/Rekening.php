@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemrograman Web</title>
-    <link rel="stylesheet" href="Rekening.css">
-        <script src="https://kit.fontawesome.com/a53653dcab.js" crossorigin="anonymous"></script>
+    <title>Dashboard - Rekening</title>
+    <link rel="stylesheet" href="../src/css/rekening.css">
+    <script src="https://kit.fontawesome.com/a53653dcab.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -33,7 +33,7 @@
                     <i class="fa-regular fa-address-book fa-2x"></i>
                     <h1><a href="administrasi.php">Administrasi</a></h1>
                 </div>
-                <div class="isi-dash1">
+                <div class="isi-dash1 active">
                     <i class="fa-regular fa-user fa-2x"></i>
                     <h1><a href="rekening.php">Rekening</a></h1>
                 </div>
@@ -44,17 +44,18 @@
                 <div class="isi-dash1">
                     <i class="fa-regular fa-credit-card fa-2x"></i>
                     <h1><a href="admin.php">Admin</a></h1>
-                </div><div class="isi-dash1">
-                    <i class="fa-solid fa-right-from-bracket fa-2x"></i>
-                    <h1><a href="../logout.php">Logout</a></h1>
                 </div>
+            </div>
+            <div class="isi-dash1">
+                <i class="fa-solid fa-right-from-bracket fa-2x"></i>
+                <h1><a href="../logout.php">Logout</a></h1>
             </div>
         </div>
     </div>
     <div class="dash-2">
         <div class="menubar-dash2">
             <div class="menubar-left">
-                <h1>Dashboard > Orders</h1>
+                <h1>Dashboard > Rekening</h1>
             </div>
             <div class="menubar-right">
                 <i class="fa-regular fa-bell fa-2x"></i>
@@ -66,13 +67,15 @@
         <div class="isibar">
             <div class="isibar-title">
                 <div class="isibart-left">
-                    <h1>Orders</h1>
+                    <h1>Rekening</h1>
                 </div>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-create" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    CREATE NEW
-                </button>
+                <div class="isibar-right">
+                    <button type="button" class="btn btn-primary btn-create" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        CREATE NEW
+                    </button>
+                </div>
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"

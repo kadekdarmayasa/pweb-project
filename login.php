@@ -20,7 +20,7 @@ if(isset($_SESSION['id'])){
 
 
     if($role > 1) {
-        header('Location: Dashboard/admin.php?id=' + $id);
+        header('Location: Dashboard/admin.php');
         exit;
     } else {
         header('Location: Dashboard/siswa.php');
