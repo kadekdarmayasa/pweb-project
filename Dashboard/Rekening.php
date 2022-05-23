@@ -1,3 +1,13 @@
+<?php  
+    require '../app/functions.php';
+    $query = query($connection, "SELECT * FROM rekeningsiswa");
+    $accounts = [];
+    while($row = mysqli_fetch_assoc($query)) {
+        $accounts[] = $row;
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,8 +24,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-        <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
 <body>
@@ -27,7 +37,7 @@
             </div>
             <div class="dash1-column">
                 <div class="isi-dash1">
-                    <i class="fa-solid fa-user-check fa-2x"></i>
+                    <i class="fa-solid fa-user-group fa-2x"></i>
                     <h1><a href="siswa.php">Siswa</a></h1>
                 </div>
                 <div class="isi-dash1">
@@ -43,8 +53,8 @@
                     <h1><a href="spp.php">SPP</a></h1>
                 </div>
                 <div class="isi-dash1">
-                    <i class="fa-regular fa-credit-card fa-2x"></i>
-                    <h1><a href="admin.php">Admin</a></h1>
+                    <i class="fa-solid fa-user-gear fa-2x"></i>
+                    <h1><a href="admin.php">Kesiswaan</a></h1>
                 </div>
             </div>
             <div class="log-out">
@@ -166,7 +176,7 @@
                         <h1>NIS</h1>
                     </div>
                     <div class="rb-5 rb-h1 rb-bold">
-                        <h1>No. Rek</h1>
+                        <h1>No. Rekening</h1>
                     </div>
                     <div class="rb-6 rb-h1 rb-bold">
                         <h1>Riwayat Transaksi</h1>
@@ -174,48 +184,37 @@
                         <h1>Tanggal Transaksi</h1>
                     </div>
                 </div>
-                <?php
-                // $conn = mysqli_connect('localhost', 'root', '', 'Tugas');
-                // $result = mysqli_query($conn, 'SELECT * FROM data_pembeli');
-                // if (!$result) {
-                //     echo mysqli_error($conn);
-                // }
-
-                // $i = 1;
-                // while ($row = mysqli_fetch_row($result)) :
-                ?>
-                <!-- <hr width="98%">
+                <?php foreach($accounts as $account) :  ?>
+                <hr width="98%">
                     <div class="recordbar-box rb-fields">
                         <div class="rb-1 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $account['nama_siswa']; ?></h1>
                         </div>
                         <div class="rb-2 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $account['jurusan']; ?></h1>
                         </div>
                         <div class="rb-3 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1> 
+                            <h1><?= $account['kelas']; ?></h1> 
                         </div>
                         <div class="rb-4 rb-h1"> 
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $account['nis']; ?></h1>
                         </div>
                         <div class="rb-5 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $account['no_rekening']; ?></h1>
                         </div>
                         <div class="rb-6 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $account['riwayat_transaksi']; ?></h1>
                         </div>
                         <div class="rb-7 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $account['tanggal_transaksi']; ?></h1>
                         </div>
-                    </div> -->
-                <?php 
-                // endwhile;
-                 ?>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
     <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 
 </html>

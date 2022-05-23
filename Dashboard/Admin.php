@@ -1,10 +1,16 @@
 <?php  
     require '../app/functions.php';
-    if(isset($_GET['id'])) {
-        $id = $_GET['id'];
-        $query = query($connection, "SELECT * FROM `users` WHERE `id_user`=$id");
-        $result = mysqli_fetch_assoc($query);
-        $username = $result['username'];
+    // if(isset($_GET['id'])) {
+    //     $id = $_GET['id'];
+    //     $query = query($connection, "SELECT * FROM `users` WHERE `id_user`=$id");
+    //     $result = mysqli_fetch_assoc($query);
+    //     $username = $result['username'];
+    // }
+
+    $query = query($connection, "SELECT * FROM `kesiswaan`");
+    $admins = [];
+    while($row = mysqli_fetch_assoc($query)) {
+        $admins[] = $row;
     }
 ?>
 
@@ -15,7 +21,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Admin</title>
+    <title>Dashboard - Kesiswaan</title>
     <link rel="stylesheet" href="../src/css/admin.css">
 
     <script src="https://kit.fontawesome.com/c7301203e1.js" crossorigin="anonymous"></script>
@@ -24,9 +30,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-        <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-</head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
 
 <body>
     <div class="dash-1">
@@ -37,12 +43,12 @@
             </div>
             <div class="dash1-column">
                 <div class="isi-dash1">
-                    <i class="fa-solid fa-user-check fa-2x"></i>
+                    <i class="fa-solid fa-user-group fa-2x"></i>
                     <h1><a href="siswa.php">Siswa</a></h1>
                 </div>
                 <div class="isi-dash1">
                     <i class="fa-regular fa-address-book fa-2x"></i>
-                    <h1><a href="administrasi.php?username=<?= $username ?>">Administrasi</a></h1>
+                    <h1><a href="administrasi.php">Administrasi</a></h1>
                 </div>
                 <div class="isi-dash1">
                     <i class="fa-solid fa-file-invoice-dollar fa-2x"></i>
@@ -53,8 +59,8 @@
                     <h1><a href="spp.php">SPP</a></h1>
                 </div>
                 <div class="isi-dash1 active">
-                    <i class="fa-regular fa-credit-card fa-2x"></i>
-                    <h1><a href="admin.php">Admin</a></h1>
+                    <i class="fa-solid fa-user-gear fa-2x"></i>
+                    <h1><a href="admin.php">Kesiswaan</a></h1>
                 </div>
             </div>
             <div class="log-out">
@@ -66,12 +72,12 @@
     <div class="dash-2">
         <div class="menubar-dash2">
             <div class="menubar-left">
-                <h1>Dashboard > Admin</h1>
+                <h1>Dashboard > Kesiswaan</h1>
             </div>
             <div class="menubar-right">
                 <i class="fa-regular fa-bell fa-2x"></i>
                 <div class="profile"></div>
-                <h1><?= $username; ?></h1>
+                <h1>Cocomelon</h1>
                 <i class="fa-solid fa-angle-down fa-2x"></i>
             </div>
         </div>
@@ -180,48 +186,31 @@
                     </div>
 
                 </div>
-                <?php
-                // $conn = mysqli_connect('localhost', 'root', '', 'Tugas');
-                // $result = mysqli_query($conn, 'SELECT * FROM data_pembeli');
-                // if (!$result) {
-                //     echo mysqli_error($conn);
-                // }
-
-                // $i = 1;
-                // while ($row = mysqli_fetch_row($result)) :
-                ?>
-                <!-- <hr width="98%">
-                    <div class="recordbar-box rb-fields">
-                        <div class="rb-1 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                <?php foreach($admins as $admin) : ?>
+                    <hr width="98%">
+                        <div class="recordbar-box rb-fields">
+                            <div class="rb-1 rb-h1">
+                                <h1><?= $admin['nama_admin']; ?></h1>
+                            </div>
+                            <div class="rb-2 rb-h1">
+                                <h1><?= $admin['nip']; ?></h1>
+                            </div>
+                            <div class="rb-3 rb-h1">
+                                <h1><?= $admin['pendidikan']; ?></h1> 
+                            </div>
+                            <div class="rb-4 rb-h1"> 
+                                <h1><?= $admin['alamat']; ?></h1>
+                            </div>
+                            <div class="rb-5 rb-h1">
+                                <h1><?= $admin['telp']; ?></h1>
+                            </div>
                         </div>
-                        <div class="rb-2 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
-                        </div>
-                        <div class="rb-3 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1> 
-                        </div>
-                        <div class="rb-4 rb-h1"> 
-                            <h1>Ini Masukan Record & Fields</h1>
-                        </div>
-                        <div class="rb-5 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
-                        </div>
-                        <div class="rb-6 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
-                        </div>
-                        <div class="rb-7 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
-                        </div>
-                    </div> -->
-                <?php 
-                // endwhile;
-                 ?>
+                <?php endforeach ;?>
             </div>
         </div>
     </div>
     <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 
 </html>

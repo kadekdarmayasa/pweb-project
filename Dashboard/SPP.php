@@ -1,3 +1,12 @@
+<?php  
+    require '../app/functions.php';
+    $query = query($connection, "SELECT * FROM spp");
+    $results = [];
+    while($row = mysqli_fetch_assoc($query)) {
+        $results[] = $row;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,9 +23,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-        <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-</head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
 
 <body>
     <div class="dash-1">
@@ -27,7 +36,7 @@
             </div>
             <div class="dash1-column">
                 <div class="isi-dash1">
-                    <i class="fa-solid fa-user-check fa-2x"></i>
+                    <i class="fa-solid fa-user-group fa-2x"></i>
                     <h1><a href="siswa.php">Siswa</a></h1>
                 </div>
                 <div class="isi-dash1">
@@ -43,8 +52,8 @@
                     <h1><a href="spp.php">SPP</a></h1>
                 </div>
                 <div class="isi-dash1">
-                    <i class="fa-regular fa-credit-card fa-2x"></i>
-                    <h1><a href="admin.php">Admin</a></h1>
+                    <i class="fa-solid fa-user-gear fa-2x"></i>
+                    <h1><a href="admin.php">Kesiswaan</a></h1>
                 </div>
             </div>
             <div class="log-out">
@@ -172,48 +181,34 @@
                         <h1>Tagihan Osis</h1>
                     </div>
                 </div>
-                <?php
-                // $conn = mysqli_connect('localhost', 'root', '', 'Tugas');
-                // $result = mysqli_query($conn, 'SELECT * FROM data_pembeli');
-                // if (!$result) {
-                //     echo mysqli_error($conn);
-                // }
-
-                // $i = 1;
-                // while ($row = mysqli_fetch_row($result)) :
-                ?>
-                <!-- <hr width="98%">
+                <?php foreach($results as $spp) :?>
+                <hr width="98%">
                     <div class="recordbar-box rb-fields">
                         <div class="rb-1 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $spp['nama_siswa']; ?></h1>
                         </div>
                         <div class="rb-2 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $spp['jurusan']; ?></h1>
                         </div>
                         <div class="rb-3 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1> 
+                            <h1><?= $spp['kelas']; ?></h1> 
                         </div>
                         <div class="rb-4 rb-h1"> 
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $spp['nis']; ?></h1>
                         </div>
                         <div class="rb-5 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $spp['tagihan_spp']; ?></h1>
                         </div>
                         <div class="rb-6 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $spp['tagihan_osis']; ?></h1>
                         </div>
-                        <div class="rb-7 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
-                        </div>
-                    </div> -->
-                <?php 
-                // endwhile;
-                 ?>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
     <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 
 </html>

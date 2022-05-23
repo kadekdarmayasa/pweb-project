@@ -477,15 +477,15 @@ div.rb-2 {
 }
 
 div.rb-3 {
-	flex: 3;
-}
-
-div.rb-4 {
 	flex: 2;
 }
 
+div.rb-4 {
+	flex: 1;
+}
+
 div.rb-5 {
-	flex: 4;
+	flex: 3;
 }
 
 div.rb-6 {
