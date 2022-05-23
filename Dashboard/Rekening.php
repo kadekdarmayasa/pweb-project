@@ -1,13 +1,3 @@
-<?php  
-    require '../app/functions.php';
-    $query = query($connection, "SELECT * FROM rekeningsiswa");
-    $accounts = [];
-    while($row = mysqli_fetch_assoc($query)) {
-        $accounts[] = $row;
-    }
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,17 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Rekening</title>
-    <link rel="stylesheet" href="../src/css/rekening.css">
-
-    <script src="https://kit.fontawesome.com/c7301203e1.js" crossorigin="anonymous"></script>
+    <title>Pemrograman Web</title>
+    <link rel="stylesheet" href="Rekening.css">
+    <link rel="stylesheet" href="../fontawesome-free-6.1.1-web/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
 <body>
@@ -37,15 +26,15 @@
             </div>
             <div class="dash1-column">
                 <div class="isi-dash1">
-                    <i class="fa-solid fa-user-group fa-2x"></i>
+                    <i class="fa-regular fa-message fa-2x"></i>
                     <h1><a href="siswa.php">Siswa</a></h1>
                 </div>
                 <div class="isi-dash1">
                     <i class="fa-regular fa-address-book fa-2x"></i>
                     <h1><a href="administrasi.php">Administrasi</a></h1>
                 </div>
-                <div class="isi-dash1 active">
-                    <i class="fa-solid fa-file-invoice-dollar fa-2x"></i>
+                <div class="isi-dash1">
+                    <i class="fa-regular fa-user fa-2x"></i>
                     <h1><a href="rekening.php">Rekening</a></h1>
                 </div>
                 <div class="isi-dash1">
@@ -53,20 +42,16 @@
                     <h1><a href="spp.php">SPP</a></h1>
                 </div>
                 <div class="isi-dash1">
-                    <i class="fa-solid fa-user-gear fa-2x"></i>
-                    <h1><a href="admin.php">Kesiswaan</a></h1>
+                    <i class="fa-regular fa-credit-card fa-2x"></i>
+                    <h1><a href="admin.php">Admin</a></h1>
                 </div>
-            </div>
-            <div class="log-out">
-                <i class="fa-solid fa-right-from-bracket fa-2x"></i>
-                <h1><a href="../logout.php">Log Out</a></h1>
             </div>
         </div>
     </div>
     <div class="dash-2">
         <div class="menubar-dash2">
             <div class="menubar-left">
-                <h1>Dashboard > Rekening</h1>
+                <h1>Dashboard > Orders</h1>
             </div>
             <div class="menubar-right">
                 <i class="fa-regular fa-bell fa-2x"></i>
@@ -78,10 +63,65 @@
         <div class="isibar">
             <div class="isibar-title">
                 <div class="isibart-left">
-                    <h1>Rekening</h1>
+                    <h1>Orders</h1>
                 </div>
-                <div class="isibart-right">
-                    <button>CREATE NEW</button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-create" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    CREATE NEW
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Rekening</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form">
+                                    <form action="">
+                                        <div class="input">
+                                            <label for="Nama">Nama</label>
+                                            <input type="text" placeholder="Nama">
+                                        </div>
+                                        <div class="input">
+                                            <label for="Jurusan">Jurusan</label>
+                                            <input type="text" placeholder="Jurusan">
+                                        </div>
+                                        <div class="input">
+                                            <label for="Kelas">Kelas</label>
+                                            <input type="text" placeholder="Kelas">
+                                        </div>
+                                        <div class="input">
+                                            <label for="NIS">NIS</label>
+                                            <input type="text" placeholder="NIS">
+                                        </div>
+                                        <div class="input">
+                                            <label for="NoRekening">No Rekening</label>
+                                            <input type="text" placeholder="No Rekening">
+                                        </div>
+                                        <div class="input">
+                                            <label for="RiwayatTransaksi">Riwayat Transaksi</label>
+                                            <input type="text" placeholder="Riwayat Transaksi">
+                                        </div>
+                                        <div class="input">
+                                            <label for="TanggalTransaksi">Tanggal Transaksi</label>
+                                            <input type="text" placeholder="Tanggal Transaksi">
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary btn-create">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="isibar-box">
@@ -176,45 +216,58 @@
                         <h1>NIS</h1>
                     </div>
                     <div class="rb-5 rb-h1 rb-bold">
-                        <h1>No. Rekening</h1>
+                        <h1>No. Rek</h1>
                     </div>
                     <div class="rb-6 rb-h1 rb-bold">
                         <h1>Riwayat Transaksi</h1>
-                    </div> <div class="rb-7 rb-h1 rb-bold">
+                    </div>
+                    <div class="rb-7 rb-h1 rb-bold">
                         <h1>Tanggal Transaksi</h1>
                     </div>
                 </div>
-                <?php foreach($accounts as $account) :  ?>
-                <hr width="98%">
+                <?php
+                // $conn = mysqli_connect('localhost', 'root', '', 'Tugas');
+                // $result = mysqli_query($conn, 'SELECT * FROM data_pembeli');
+                // if (!$result) {
+                //     echo mysqli_error($conn);
+                // }
+
+                // $i = 1;
+                // while ($row = mysqli_fetch_row($result)) :
+                ?>
+                <!-- <hr width="98%">
                     <div class="recordbar-box rb-fields">
                         <div class="rb-1 rb-h1">
-                            <h1><?= $account['nama_siswa']; ?></h1>
+                            <h1>Ini Masukan Record & Fields</h1>
                         </div>
                         <div class="rb-2 rb-h1">
-                            <h1><?= $account['jurusan']; ?></h1>
+                            <h1>Ini Masukan Record & Fields</h1>
                         </div>
                         <div class="rb-3 rb-h1">
-                            <h1><?= $account['kelas']; ?></h1> 
+                            <h1>Ini Masukan Record & Fields</h1> 
                         </div>
                         <div class="rb-4 rb-h1"> 
-                            <h1><?= $account['nis']; ?></h1>
+                            <h1>Ini Masukan Record & Fields</h1>
                         </div>
                         <div class="rb-5 rb-h1">
-                            <h1><?= $account['no_rekening']; ?></h1>
+                            <h1>Ini Masukan Record & Fields</h1>
                         </div>
                         <div class="rb-6 rb-h1">
-                            <h1><?= $account['riwayat_transaksi']; ?></h1>
+                            <h1>Ini Masukan Record & Fields</h1>
                         </div>
                         <div class="rb-7 rb-h1">
-                            <h1><?= $account['tanggal_transaksi']; ?></h1>
+                            <h1>Ini Masukan Record & Fields</h1>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    </div> -->
+                <?php 
+                // endwhile;
+                 ?>
             </div>
         </div>
     </div>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
