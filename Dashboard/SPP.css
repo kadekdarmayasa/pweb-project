@@ -535,3 +535,9 @@ color: #F4F2F6;
 .btn-create {
     background-color: #45BE8B !important;
 }
+
+div.isi-dash1:last-child i{
+transform: rotate(180deg);
+padding-right: 0!important; 
+padding-left: 30px !important;
+}

@@ -44,7 +44,7 @@ if(isset($_POST['login'])) {
 $client = new Google_Client();
 
 $client->setClientId('66255506010-afqm4b7a7f81aio9tbs7jdb8k24r0qka.apps.googleusercontent.com');$client->setClientSecret('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');
-$client->setRedirectUri('http://localhost/pendaftaran-siswa/login.php');
+$client->setRedirectUri('http://localhost/pweb-project/login.php');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");

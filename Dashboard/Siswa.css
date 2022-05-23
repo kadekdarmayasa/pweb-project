@@ -439,11 +439,15 @@ div.rb-2 {
 }
 
 div.rb-3 {
-    flex: 5;
+    flex: 2;
 }
-
+div.isi-dash1:last-child i{
+transform: rotate(180deg);
+padding-right: 0!important; 
+padding-left: 30px !important;
+}
 div.rb-4 {
-    flex: 3;
+    flex: 2;
 }
 
 div.rb-5 {

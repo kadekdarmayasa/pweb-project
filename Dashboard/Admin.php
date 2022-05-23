@@ -8,7 +8,7 @@
     <title>Pemrograman Web</title>
     <link rel="stylesheet" href="Admiin.css">
 
-    <link rel="stylesheet" href="../fontawesome-free-6.1.1-web/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a53653dcab.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -46,7 +46,11 @@
                 <div class="isi-dash1">
                     <i class="fa-regular fa-credit-card fa-2x"></i>
                     <h1><a href="admin.php">Admin</a></h1>
+                </div> <div class="isi-dash1">
+                    <i class="fa-solid fa-right-from-bracket fa-2x"></i>
+                    <h1><a href="../logout.php">Logout</a></h1>
                 </div>
+
             </div>
         </div>
     </div>
@@ -214,41 +218,36 @@
 
                 </div>
                 <?php
-                // $conn = mysqli_connect('localhost', 'root', '', 'Tugas');
-                // $result = mysqli_query($conn, 'SELECT * FROM data_pembeli');
-                // if (!$result) {
-                //     echo mysqli_error($conn);
-                // }
+  $conn = mysqli_connect('localhost','kadekdarmayasa', 'darma2006', 'pendaftaran_siswa');
+                
+                $result = mysqli_query($conn, 'SELECT * FROM kesiswaan');
+                if (!$result) {
+                    echo mysqli_error($conn);
+                }
 
-                // $i = 1;
-                // while ($row = mysqli_fetch_row($result)) :
+                $i = 1;
+                while ($row = mysqli_fetch_assoc($result)) :
                 ?>
-                <!-- <hr width="98%">
+                <hr width="98%">
                     <div class="recordbar-box rb-fields">
                         <div class="rb-1 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $row['nama_admin']?></h1>
                         </div>
                         <div class="rb-2 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $row['nip']?></h1>
                         </div>
                         <div class="rb-3 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1> 
+                            <h1><?= $row['pendidikan']?></h1> 
                         </div>
                         <div class="rb-4 rb-h1"> 
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $row['alamat']?></h1>
                         </div>
                         <div class="rb-5 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
+                            <h1><?= $row['telp']?></h1>
                         </div>
-                        <div class="rb-6 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
-                        </div>
-                        <div class="rb-7 rb-h1">
-                            <h1>Ini Masukan Record & Fields</h1>
-                        </div>
-                    </div> -->
+                    </div>
                 <?php 
-                // endwhile;
+                endwhile;
                  ?>
             </div>
         </div>

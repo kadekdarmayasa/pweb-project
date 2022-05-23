@@ -10,7 +10,11 @@ body {
     width: 100%;
     height: 100%;
 }
-
+div.isi-dash1:last-child i{
+transform: rotate(180deg);
+padding-right: 0!important; 
+padding-left: 30px !important;
+}
 div.dash-1 {
     background-color: #45BE8B;
     width: 17%;
